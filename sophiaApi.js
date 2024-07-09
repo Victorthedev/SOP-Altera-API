@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const sophiaApi = axios.create({
-    baseURL: process.env.SOPHIA_API,
+    baseURL: process.env.SOPHIA_API_URL,
     timeout: 10000,
 });
 
