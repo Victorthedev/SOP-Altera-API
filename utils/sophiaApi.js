@@ -9,5 +9,5 @@ module.exports = {
     createSOP: (sop) => sophiaApi.post('/sops', sop),
     getSOP: (id) => sophiaApi.get(`/sops/${id}`),
     logProcedure: (procedureData) => sophiaApi.post('/procedures', procedureData),
-    pushSOPToAlltera: (sop) => axios.post(`${process.env.ALLTERA_API_URL}/sops`, sop),
+    pushSOPToAltera: (sop) => axios.post(`${process.env.ALTERA_API_URL}/sops`, sop),
 };

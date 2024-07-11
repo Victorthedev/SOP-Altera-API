@@ -36,10 +36,10 @@ describe('SOPHIA API', () => {
     expect(response.data).to.deep.equal(sop);
   });
 
-  it('should push an SOP to Alltera', async () => {
+  it('should push an SOP to Altera', async () => {
     const sop = { title: 'New SOP', content: 'Step-by-step instructions' };
 
-    nock(process.env.ALLTERA_API_URL)
+    nock(process.env.ALTERA_API_URL)
       .post('/sops', sop)
       .reply(200, sop);
 

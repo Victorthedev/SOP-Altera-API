@@ -1,44 +1,45 @@
 # SOP-Altera-API
 
-# SOPHIA and Alltera Integration Service
+# SOPHIA and Altera Integration Service
 
-This codebase implements the integration flow between SOPHIA and Alltera systems for managing Standard Operating Procedures (SOPs) and procedure execution data. It ensures that SOPs are created in SOPHIA, pushed to Alltera, retrieved directly from SOPHIA during procedure execution in Alltera, and procedure execution data is sent back to SOPHIA for compliance tracking.
+This codebase implements the integration flow between SOPHIA and Altera systems for managing Standard Operating Procedures (SOPs) and procedure execution data. It ensures that SOPs are created in SOPHIA, pushed to Altera, retrieved directly from SOPHIA during procedure execution in Altera, and procedure execution data is sent back to SOPHIA for compliance tracking.
 
 ## Integration Flow
 
 1. **SOP Creation in SOPHIA**:
    - SOPs are created in SOPHIA.
-   - SOPHIA uses its API to push the newly created SOPs to Alltera.
+   - SOPHIA uses its API to push the newly created SOPs to Altera.
 
-2. **Procedure Execution in Alltera**:
-   - When a user initiates a procedure in Alltera, the system pulls the relevant SOP directly from SOPHIA.
+2. **Procedure Execution in Altera**:
+   - When a user initiates a procedure in Altera, the system pulls the relevant SOP directly from SOPHIA.
 
 3. **Data Logging and Compliance**:
-   - Alltera logs the procedure execution data.
+   - Altera logs the procedure execution data.
    - The logged data is then sent back to SOPHIA for compliance tracking and reporting.
 
 ## Code Structure
 
-- **server.js**: Main server file defining endpoints.
-- **allteraApi.js**: Module for interacting with the Alltera API.
+- **app.js**: Main server file defining endpoints.
 - **sophiaApi.js**: Module for interacting with the SOPHIA API.
+- **routes/sopRoutes.js**: Defines routes and maps them to controller functions.
+- **controllers/sopControllers.js**: Implements business logic for SOP operations.
 
 ## Endpoints
 
-1. **Create SOP in SOPHIA and Push to Alltera**:
-   - **URL**: `/sops`
+1. **Create SOP in SOPHIA and Push to Altera**:
+   - **URL**: `/sophia/sops`
    - **Method**: POST
-   - **Description**: Creates an SOP in SOPHIA and pushes it to Alltera.
+   - **Description**: Creates an SOP in SOPHIA and pushes it to Altera.
 
-2. **Fetch SOP from SOPHIA** (Used by Alltera during procedure execution):
-   - **URL**: `/sophia-sops/:id`
+2. **Fetch SOP from SOPHIA** (Used by Altera during procedure execution):
+   - **URL**: `/sophia/sops/:id`
    - **Method**: GET
-   - **Description**: Retrieves an SOP directly from SOPHIA based on the SOP ID. This is used by Alltera when initiating a procedure.
+   - **Description**: Retrieves an SOP directly from SOPHIA based on the SOP ID. This is used by Altera when initiating a procedure.
 
 3. **Log Procedure Execution Data**:
-   - **URL**: `/procedures`
+   - **URL**: `/sophia/procedures`
    - **Method**: POST
-   - **Description**: Logs procedure execution data in both Alltera and SOPHIA. Alltera sends the procedure data to this endpoint, which then logs it in both systems for compliance tracking.
+   - **Description**: Logs procedure execution data in both Altera and SOPHIA. Alltera sends the procedure data to this endpoint, which then logs it in both systems for compliance tracking.
 
 ## How to Use
 
@@ -55,6 +56,6 @@ This codebase implements the integration flow between SOPHIA and Alltera systems
    cd <repository-directory>
     npm install
     PORT=3000
-    ALLTERA_API_URL=<Alltera API base URL>
+    ALTERA_API_URL=<Altera API base URL>
     SOPHIA_API_URL=<SOPHIA API base URL>
     node start

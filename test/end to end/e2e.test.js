@@ -9,8 +9,9 @@ dotenv.config();
 
 const serverUrl = `http://localhost:${process.env.PORT}`;
 
-describe('SOPHIA and Alltera Integration', () => {
-  it('should create an SOP in SOPHIA and push it to Alltera', async () => {
+describe('SOPHIA and Altera Integration', () => {
+
+  it('should create an SOP in SOPHIA and push it to Altera', async () => {
     const newSOP = {
       title: 'New SOP',
       content: 'Step-by-step instructions',
@@ -18,16 +19,16 @@ describe('SOPHIA and Alltera Integration', () => {
 
     const res = await chai
       .request(serverUrl)
-      .post('/sops')
+      .post('/sophia/sops')
       .send({ sop: newSOP });
 
     expect(res).to.have.status(200);
     expect(res.body).to.have.property('sophia');
     expect(res.body.sophia).to.have.property('title').equal(newSOP.title);
     expect(res.body.sophia).to.have.property('content').equal(newSOP.content);
-    expect(res.body).to.have.property('alltera');
-    expect(res.body.alltera).to.have.property('title').equal(newSOP.title);
-    expect(res.body.alltera).to.have.property('content').equal(newSOP.content);
+    expect(res.body).to.have.property('altera');
+    expect(res.body.altera).to.have.property('title').equal(newSOP.title);
+    expect(res.body.altera).to.have.property('content').equal(newSOP.content);
   });
 
   it('should fetch an SOP from SOPHIA based on ID', async () => {
@@ -35,13 +36,13 @@ describe('SOPHIA and Alltera Integration', () => {
 
     const res = await chai
       .request(serverUrl)
-      .get(`/sophia-sops/${sopId}`);
+      .get(`/sophia/sops/${sopId}`);
 
     expect(res).to.have.status(200);
     expect(res.body).to.have.property('id').equal(sopId);
   });
 
-  it('should log procedure execution data in Alltera and SOPHIA', async () => {
+  it('should log procedure execution data in SOPHIA', async () => {
     const procedureData = {
       sopId: '123',
       executionDetails: 'Procedure execution details',
@@ -49,7 +50,7 @@ describe('SOPHIA and Alltera Integration', () => {
 
     const res = await chai
       .request(serverUrl)
-      .post('/procedures')
+      .post('/sophia/procedures')
       .send(procedureData);
 
     expect(res).to.have.status(200);
