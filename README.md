@@ -1,6 +1,6 @@
 # SOP-Altera-API
 
-# SOPHIA and Altera Integration Service
+# SOPHIA and Altera Integration 
 
 This codebase implements the integration flow between SOPHIA and Altera systems for managing Standard Operating Procedures (SOPs) and procedure execution data. It ensures that SOPs are created in SOPHIA, pushed to Altera, retrieved directly from SOPHIA during procedure execution in Altera, and procedure execution data is sent back to SOPHIA for compliance tracking.
 
