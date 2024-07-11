@@ -39,7 +39,7 @@ This codebase implements the integration flow between SOPHIA and Altera systems 
 3. **Log Procedure Execution Data**:
    - **URL**: `/sophia/procedures`
    - **Method**: POST
-   - **Description**: Logs procedure execution data in both Altera and SOPHIA. Alltera sends the procedure data to this endpoint, which then logs it in both systems for compliance tracking.
+   - **Description**: Logs procedure execution data in SOPHIA. Altera sends the procedure data to this endpoint, which then logs it in Sophia system for compliance tracking.
 
 ## How to Use
 
