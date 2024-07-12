@@ -58,4 +58,5 @@ This codebase implements the integration flow between SOPHIA and Altera systems 
     PORT=3000
     ALTERA_API_URL=<Altera API base URL>
     SOPHIA_API_URL=<SOPHIA API base URL>
+    API_KEY=<api_key>
     node start

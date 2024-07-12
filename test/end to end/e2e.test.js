@@ -8,6 +8,7 @@ const expect = chai.expect;
 dotenv.config();
 
 const serverUrl = `http://localhost:${process.env.PORT}`;
+const authHeader = `Bearer ${process.env.API_KEY}`;
 
 describe('SOPHIA and Altera Integration', () => {
 
@@ -20,6 +21,7 @@ describe('SOPHIA and Altera Integration', () => {
     const res = await chai
       .request(serverUrl)
       .post('/sophia/sops')
+      .set('Authorization', authHeader)
       .send({ sop: newSOP });
 
     expect(res).to.have.status(200);
@@ -36,7 +38,8 @@ describe('SOPHIA and Altera Integration', () => {
 
     const res = await chai
       .request(serverUrl)
-      .get(`/sophia/sops/${sopId}`);
+      .get(`/sophia/sops/${sopId}`)
+      .set('Authorization', authHeader);
 
     expect(res).to.have.status(200);
     expect(res.body).to.have.property('id').equal(sopId);
@@ -51,6 +54,7 @@ describe('SOPHIA and Altera Integration', () => {
     const res = await chai
       .request(serverUrl)
       .post('/sophia/procedures')
+      .set('Authorization', authHeader)
       .send(procedureData);
 
     expect(res).to.have.status(200);

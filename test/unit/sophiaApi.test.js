@@ -16,7 +16,11 @@ describe('SOPHIA API', () => {
   it('should create an SOP in SOPHIA', async () => {
     const sop = { title: 'New SOP', content: 'Step-by-step instructions' };
 
-    nock(process.env.SOPHIA_API_URL)
+    nock(process.env.SOPHIA_API_URL, {
+      reqheaders: {
+          'Authorization': `Bearer ${process.env.API_KEY}`
+      }
+    })
       .post('/sops', sop)
       .reply(200, sop);
 
@@ -28,7 +32,11 @@ describe('SOPHIA API', () => {
     const sopId = '123';
     const sop = { id: sopId, title: 'SOP Title', content: 'SOP Content' };
 
-    nock(process.env.SOPHIA_API_URL)
+    nock(process.env.SOPHIA_API_URL, {
+      reqheaders: {
+          'Authorization': `Bearer ${process.env.API_KEY}`
+      }
+    })
       .get(`/sops/${sopId}`)
       .reply(200, sop);
 
@@ -39,7 +47,11 @@ describe('SOPHIA API', () => {
   it('should push an SOP to Altera', async () => {
     const sop = { title: 'New SOP', content: 'Step-by-step instructions' };
 
-    nock(process.env.ALTERA_API_URL)
+    nock(process.env.ALTERA_API_URL, {
+      reqheaders: {
+          'Authorization': `Bearer ${process.env.API_KEY}`
+      }
+    })
       .post('/sops', sop)
       .reply(200, sop);
 
@@ -50,7 +62,11 @@ describe('SOPHIA API', () => {
   it('should log procedure execution data in SOPHIA', async () => {
     const procedureData = { sopId: '123', executionDetails: 'Procedure execution details' };
 
-    nock(process.env.SOPHIA_API_URL)
+    nock(process.env.SOPHIA_API_URL, {
+      reqheaders: {
+          'Authorization': `Bearer ${process.env.API_KEY}`
+      }
+    })
       .post('/procedures', procedureData)
       .reply(200, procedureData);
 
